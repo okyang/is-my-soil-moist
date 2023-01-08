@@ -25,7 +25,23 @@ graph LR
 
 **🙋‍♂️ If you want to host your own MQTT broker on the Raspberry Pi, just refer to the appendix section [below](#install-a-mqtt-broker-on-the-raspberry-pi)**
 
-### Features
+## Table of Contents
+
+- [Soil Moisture Sensor](#soil-moisture-sensor)
+  - [Features](#features)
+  - [Materials Needed](#materials-needed)
+  - [Tools](#tools)
+  - [Pre-requisites](#pre-requisites)
+  - [Steps](#steps)
+    - [1 - Create a InfluxData Account](#1---create-a-influxdata-account)
+    - [2 - Setup Config file for WIO Terminal](#2---setup-config-file-for-wio-terminal)
+    - [2 - Upload code to WIO Terminal](#2---upload-code-to-wio-terminal)
+    - [3 - Run Python MQTT Forwarder Code](#3---run-python-mqtt-forwarder-code)
+  - [Appendix](#appendix)
+    - [Install a MQTT Broker on the Raspberry Pi](#install-a-mqtt-broker-on-the-raspberry-pi)
+  - [References](#references)
+
+## Features
 
 - Capture Soil Moisture % using a moisture sensor
 
@@ -122,7 +138,9 @@ Based off of instructions from [Random Nerd Tutorials](https://randomnerdtutoria
 #### 2 - Upload code to WIO Terminal
 
 1. Connect your Wio Terminal to your Computer with a USB-C Cable
+
 2. Turn on your Wio Terminal
+
 3. Hit the upload button on Platform IO 
    
    <img src="README.assets/6eeaf7111922e197aeb28f0534f341d586f6b009.png" title="" alt="" width="469">
