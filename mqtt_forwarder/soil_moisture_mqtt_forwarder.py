@@ -42,6 +42,6 @@ def on_message(client, userdata, msg):
 
 subscriber_client.on_subscribe = on_subscribe
 subscriber_client.on_message = on_message
-subscriber_client.connect("broker.mqttdashboard.com", 1883)
+subscriber_client.connect(my_secrets.BROKER, 1883)
 subscriber_client.subscribe(my_secrets.MOSQUITTO_ID + "/telemetry", qos=1)
 subscriber_client.loop_forever()
