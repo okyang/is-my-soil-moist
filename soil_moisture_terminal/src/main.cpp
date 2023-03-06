@@ -6,10 +6,12 @@
 
 #include "config.h"
 
+// TODO: LCD Display Soil Moisture + turn off display after a period of time
+// TODO: use SERVER_COMMAND_TOPIC to issue a display turn off/on command
+
 WiFiClient wioClient;
 PubSubClient client(wioClient);
 int moisture_adc;
-char buffer[40];
 
 /// @brief connect wio terminal to wifi
 void connectWiFi()
@@ -83,28 +85,6 @@ void createMQTTClient()
     reconnectMQTTClient();
 }
 
-/// @brief converts the raw ADC values from the moisture sensor readings to a %.
-///        You'll need to specify the MOISTURE_ADC_MIN and MOISTURE_ADC_MAX values
-///        in your config.h file.
-/// @param moisture_adc the raw adc value from the moisture sensor reading
-/// @return the percentage of how moisture. 0% is dry. 100% is completely wet.
-int adcMoistureToPercent(int moisture_adc)
-{
-    if (moisture_adc <= settings::MOISTURE_ADC_MIN)
-    {
-        return 0;
-    }
-    else if (moisture_adc >= settings::MOISTURE_ADC_MAX)
-    {
-        return 100;
-    }
-    else
-    {
-        return 100 * (moisture_adc - settings::MOISTURE_ADC_MIN) / (settings::MOISTURE_ADC_MAX - settings::MOISTURE_ADC_MIN);
-    }
-    return 10;
-}
-
 void setup()
 {
     Serial.begin(9600);
@@ -126,7 +106,15 @@ void loop()
     moisture_adc = analogRead(A0);
 
     DynamicJsonDocument doc(1024);
-    doc["soil_moisture"] = adcMoistureToPercent(moisture_adc);
+    Serial.println(moisture_adc);
+    Serial.println(
+        map(
+            moisture_adc,
+            settings::MOISTURE_ADC_AIR_VALUE,
+            settings::MOISTURE_ADC_WATER_VALUE,
+            0,
+            100));
+    doc["soil_moisture"] = moisture_adc;
 
     std::string telemetry;
     serializeJson(doc, telemetry);

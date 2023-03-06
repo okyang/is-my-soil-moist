@@ -2,14 +2,15 @@
 
 #include <string>
 
-namespace settings {
+namespace settings
+{
     // WiFi credentials
     const char *SSID = "<YOUR_WIFI_ID>";
     const char *PASSWORD = "<YOUR_WIFI_PASSWORD>";
 
     // you should calibrate these values
-    const int MOISTURE_ADC_MIN = 2;        // adc value when the moisture sensor is completely dry
-    const int MOISTURE_ADC_MAX =  700;     // adc value when the moisture sensor is completely wet
+    const int MOISTURE_ADC_AIR_VALUE = 614;   // adc value when the moisture sensor is completely dry
+    const int MOISTURE_ADC_WATER_VALUE = 370; // adc value when the moisture sensor is completely wet
 
     // MQTT settings
     // create a GUID with a tool like https://guidgenerator.com/
