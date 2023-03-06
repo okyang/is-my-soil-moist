@@ -106,15 +106,12 @@ void loop()
     moisture_adc = analogRead(A0);
 
     DynamicJsonDocument doc(1024);
-    Serial.println(moisture_adc);
-    Serial.println(
-        map(
-            moisture_adc,
-            settings::MOISTURE_ADC_AIR_VALUE,
-            settings::MOISTURE_ADC_WATER_VALUE,
-            0,
-            100));
-    doc["soil_moisture"] = moisture_adc;
+    doc["soil_moisture"] = map(
+        moisture_adc,
+        settings::MOISTURE_ADC_AIR_VALUE,
+        settings::MOISTURE_ADC_WATER_VALUE,
+        0,
+        100);
 
     std::string telemetry;
     serializeJson(doc, telemetry);
