@@ -15,4 +15,4 @@ INFLUX_URL = "<YOUR INFLUXDB URL>"
 INFLUX_BUCKET = "<YOUR INFLUXB BUCKET NAME>"
 
 BROKER = "<MQTT BROKER SERVER>"
-BROKER_TOPIC = "/telemetry/soil_moisture" # for example "/telemetry/soil_moisture"
+BROKER_TOPIC = "/telemetry/soil_moisture"  # for example "/telemetry/soil_moisture"
